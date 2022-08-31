@@ -15,30 +15,38 @@ import com.springboot.crud.services.exception.ObjectNotFoundException;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
-	
-	public List<User> findAll(){
+
+	public List<User> findAll() {
 		return userRepository.findAll();
 	}
-	
+
 	public User findById(String id) {
-	 Optional<User> user = userRepository.findById(id);
-	 return user.orElseThrow(() -> new ObjectNotFoundException(id));
+		Optional<User> user = userRepository.findById(id);
+		return user.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
-	
+
 	public User insert(User user) {
 		return userRepository.save(user);
 	}
-	
+
 	public User fromDto(UserDto obj) {
-		return new User(obj.getId(),obj.getName(),obj.getEmail());
+		return new User(obj.getId(), obj.getName(), obj.getEmail());
 	}
-	
+
 	public void delete(String id) {
 		findById(id);
 		userRepository.deleteById(id);
 	}
-	
-	
+
+	public User update(String id, User user) {
+
+		User obj = findById(id);
+		obj.setName(user.getName());
+		obj.setEmail(user.getEmail());
+
+		return userRepository.save(obj);
+
+	}
+
 
 }
