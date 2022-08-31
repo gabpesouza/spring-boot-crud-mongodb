@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.springboot.crud.domain.Post;
 import com.springboot.crud.domain.User;
 import com.springboot.crud.dto.UserDto;
 import com.springboot.crud.repository.UserRepository;
@@ -69,6 +70,13 @@ public class UserResource {
 		
 		
 	}
+	@GetMapping(value = "/{id}/posts" )
+	public ResponseEntity<List<Post>>getPosts(@PathVariable String id){
+		User user = userService.findById(id);
+		return ResponseEntity.ok(user.getPosts());
+	}
+	
+	
 	
 
 }
