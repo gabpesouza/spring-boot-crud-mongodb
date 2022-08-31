@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.springboot.crud.dto.AuthorDto;
@@ -33,7 +34,7 @@ public class Post implements Serializable {
 		this.date = date;
 		this.title = title;
 		this.body = body;
-		this.author = author;
+		this.setAuthor(author);
 	}
 
 	public String getId() {
@@ -83,6 +84,14 @@ public class Post implements Serializable {
 			return false;
 		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public AuthorDto getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(AuthorDto author) {
+		this.author = author;
 	}
 	
 	

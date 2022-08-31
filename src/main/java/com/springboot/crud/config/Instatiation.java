@@ -33,7 +33,7 @@ public class Instatiation implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(user,user1,user2));
 		
-		Post post = new Post(null,sdf.parse("21/03/2018"),"Viagem Brasil","Viajando, abracos", new AuthorDto(user2));
+		Post post = new Post(null,sdf.parse("21/03/2018"),"Viagem Brasil","Viajando, abracos", new AuthorDto(user));
 		Post post1 = new Post(null,sdf.parse("23/05/1997"),"Viagem para Paris", "Volto logo", new AuthorDto(user));
 		
 		postRepository.saveAll(Arrays.asList(post,post1));
