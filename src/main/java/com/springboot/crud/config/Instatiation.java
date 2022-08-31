@@ -39,6 +39,11 @@ public class Instatiation implements CommandLineRunner {
 		postRepository.saveAll(Arrays.asList(post,post1));
 		
 		
+		user.getPosts().addAll(Arrays.asList(post,post1));
+		
+		userRepository.save(user);
+		
+		
 		
 		
 		
