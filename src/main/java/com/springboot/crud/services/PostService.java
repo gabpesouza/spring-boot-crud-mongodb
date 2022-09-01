@@ -1,7 +1,11 @@
 package com.springboot.crud.services;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +37,14 @@ public class PostService {
 		return postRepository.findByTitle(text);
 	}
 	
+	public List<Post> findByPattern(String text,Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 + 1000);
+		return postRepository.findByPattern(text, minDate, maxDate);
+		
+	
+		
+		
+		
+	}
 	
 }
